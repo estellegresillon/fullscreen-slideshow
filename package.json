@@ -1,5 +1,5 @@
 {
-  "name": "fullscreenscroll",
+  "name": "dune",
   "version": "1.0.0",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
@@ -11,15 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/codrops/[NAME].git"
+    "url": "git://github.com/estellegresillon/dune.git"
   },
   "keywords": [],
-  "author": "Codrops",
+  "author": "Estelle Grésillon",
   "license": "MIT",
-  "homepage": "https://tympanus.net/codrops",
-  "bugs": {
-    "url": "https://github.com/codrops/[NAME]/issues"
-  },
+  "homepage": "https://dune.estellegresillon.fr",
   "devDependencies": {
     "parcel": "^2.7.0"
   },
