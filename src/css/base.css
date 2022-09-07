@@ -17,10 +17,10 @@ body {
   margin: 0;
   --color-text: #f6f1f1;
   --color-bg: #0f0e0e;
-  --color-link: #e94b31;
+  --color-link: #e9aa31;
   --color-text-alt: #999797;
   --color-link-hover: #fff;
-  --cursor-stroke: #e94b31;
+  --cursor-stroke: #e9aa31;
   --cursor-fill: transparent;
   --cursor-stroke-width: 1px;
   color: var(--color-text);
@@ -137,7 +137,7 @@ a:focus-visible {
   place-self: center;
   align-self: end;
   pointer-events: none;
-  letter-spacing: 1px;
+  font-family: obviously;
 }
 
 .frame__info--show {
@@ -151,7 +151,7 @@ a:focus-visible {
   align-items: flex-end;
   flex-direction: column;
   display: flex;
-  letter-spacing: 1px;
+  font-family: obviously;
 }
 
 .frame__title-main {
@@ -266,7 +266,7 @@ a:focus-visible {
   top: 0;
   left: 0;
   font-size: 15vw;
-  font-size: clamp(2rem, 15vw, 14rem);
+  font-size: 8rem;
   font-weight: 200;
   text-transform: uppercase;
   text-align: center;
@@ -299,7 +299,7 @@ a:focus-visible {
   display: block;
   font-weight: 300;
   text-transform: none;
-  line-height: 42px;
+  line-height: 80px;
 }
 
 .slide__inner {
@@ -337,6 +337,8 @@ a:focus-visible {
   display: block;
   background-size: cover;
   background-position: 50% 50%;
+  pointer-events: none;
+  user-select: none;
 }
 
 .slide__img--1,
@@ -377,46 +379,77 @@ a:focus-visible {
 }
 
 .slide__content {
-  grid-area: 1 / 1 / -1 / -1;
-  display: grid;
+  display: flex;
   background: var(--color-bg-slide);
-  align-content: center;
   justify-content: center;
-  padding: 1rem;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 2rem;
-  grid-template-areas: "img title" "img text" "img ...";
+  padding: 5rem;
   position: fixed;
   height: 100vh;
   width: 100vw;
   transform: translateY(-100%);
   z-index: 2;
+  overflow: scroll;
+}
+
+.slide__content-inner {
+  height: 100%;
+  width: 50%;
+}
+
+.slide__content-rating {
+  font-family: obviously;
+}
+
+.slide__content-rating-site {
+  color: var(--color-link);
+  font-family: initial;
+  font-size: 16px;
+  margin-right: 10px;
 }
 
 .slide__content-img {
   height: 300px;
+  width: 220px;
   background-size: cover;
   background-position: 50% 50%;
-  grid-area: img;
   will-change: transform;
 }
 
 .slide__content h2 {
-  grid-area: title;
   font-weight: 200;
+  margin-bottom: 0px;
   font-size: clamp(3rem, 2vw, 3rem);
   text-transform: none;
-  margin: 0 0 3rem 0;
   line-height: 1;
 }
 
-.slide__content p {
-  grid-area: text;
-  max-width: 260px;
-  line-height: 1.5;
+.slide__content h3 {
+  margin: 3rem 0 1.5rem 0;
+  line-height: 1;
+}
+
+.slide__content h4 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.5);
+}
+
+.slide__content p {
+  font-family: obviously;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.slide__content quote {
+  font-family: obviously;
+  display: block;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 4px solid gray;
+}
+
+.slide__content quote:last-child {
+  padding-bottom: 5rem;
+  border: none;
 }
 
 .cursor {
@@ -433,15 +466,6 @@ a:focus-visible {
     grid-template-areas: "back ... title" "nav info ...";
     align-content: space-between;
   }
-  .slide__content {
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 220px 300px;
-    grid-column-gap: 2rem;
-    grid-template-areas: "img title" "img text" "img ...";
-  }
-}
-
-@media screen and (min-width: 53em) {
   .frame__menu {
     justify-self: end;
     align-self: start;
@@ -491,7 +515,8 @@ a:focus-visible {
     left: 0;
     display: block;
     pointer-events: none;
-    /*mix-blend-mode: color-burn;*/
+    letter-spacing: 1px;
+    /* mix-blend-mode: color-burn; */
   }
   .cursor__inner {
     fill: var(--cursor-fill);

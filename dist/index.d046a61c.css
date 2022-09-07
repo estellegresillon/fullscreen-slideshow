@@ -14,10 +14,10 @@
 body {
   --color-text: #f6f1f1;
   --color-bg: #0f0e0e;
-  --color-link: #e94b31;
+  --color-link: #e9aa31;
   --color-text-alt: #999797;
   --color-link-hover: #fff;
-  --cursor-stroke: #e94b31;
+  --cursor-stroke: #e9aa31;
   --cursor-fill: transparent;
   --cursor-stroke-width: 1px;
   color: var(--color-text);
@@ -123,9 +123,9 @@ a:focus-visible {
 .frame__info {
   opacity: 0;
   pointer-events: none;
-  letter-spacing: 1px;
   grid-area: info;
   place-self: end center;
+  font-family: obviously;
 }
 
 .frame__info--show {
@@ -134,11 +134,11 @@ a:focus-visible {
 }
 
 .frame__title {
-  letter-spacing: 1px;
   flex-direction: column;
   grid-area: title;
   place-self: end;
   align-items: flex-end;
+  font-family: obviously;
   display: flex;
 }
 
@@ -258,7 +258,7 @@ a:focus-visible {
   justify-content: center;
   align-items: center;
   margin: 0;
-  font-size: clamp(2rem, 15vw, 14rem);
+  font-size: 8rem;
   font-weight: 200;
   line-height: 1;
   display: flex;
@@ -281,7 +281,7 @@ a:focus-visible {
   text-transform: none;
   font-size: 2.5rem;
   font-weight: 300;
-  line-height: 42px;
+  line-height: 80px;
   display: block;
 }
 
@@ -301,6 +301,9 @@ a:focus-visible {
 .slide__img {
   opacity: .4;
   height: calc(50% - 1.5rem);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
   background-position: 50%;
   background-size: cover;
   flex: none;
@@ -343,45 +346,76 @@ a:focus-visible {
 
 .slide__content {
   background: var(--color-bg-slide);
-  grid-column-gap: 2rem;
   height: 100vh;
   width: 100vw;
   z-index: 2;
-  grid-template: "img title"
-                 "img text"
-                 "img ."
-                 / 1fr 1fr;
-  grid-area: 1 / 1 / -1 / -1;
-  place-content: center;
-  padding: 1rem;
-  display: grid;
+  justify-content: center;
+  padding: 5rem;
+  display: flex;
   position: fixed;
+  overflow: scroll;
   transform: translateY(-100%);
+}
+
+.slide__content-inner {
+  height: 100%;
+  width: 50%;
+}
+
+.slide__content-rating {
+  font-family: obviously;
+}
+
+.slide__content-rating-site {
+  color: var(--color-link);
+  margin-right: 10px;
+  font-family: initial;
+  font-size: 16px;
 }
 
 .slide__content-img {
   height: 300px;
+  width: 220px;
   will-change: transform;
   background-position: 50%;
   background-size: cover;
-  grid-area: img;
 }
 
 .slide__content h2 {
   text-transform: none;
-  grid-area: title;
-  margin: 0 0 3rem;
+  margin-bottom: 0;
   font-size: clamp(3rem, 2vw, 3rem);
   font-weight: 200;
   line-height: 1;
 }
 
-.slide__content p {
-  max-width: 260px;
-  color: #ffffff80;
-  grid-area: text;
+.slide__content h3 {
+  margin: 3rem 0 1.5rem;
+  line-height: 1;
+}
+
+.slide__content h4 {
   margin: 0;
+}
+
+.slide__content p {
+  color: #fff;
+  margin-bottom: 20px;
+  font-family: obviously;
   line-height: 1.5;
+}
+
+.slide__content quote {
+  border-left: 4px solid gray;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-family: obviously;
+  display: block;
+}
+
+.slide__content quote:last-child {
+  border: none;
+  padding-bottom: 5rem;
 }
 
 .cursor {
@@ -397,14 +431,6 @@ a:focus-visible {
                    "nav info ."
                    / auto auto auto;
     align-content: space-between;
-  }
-
-  .slide__content {
-    grid-column-gap: 2rem;
-    grid-template: "img title"
-                   "img text"
-                   "img ."
-                   / 220px 300px;
   }
 
   .frame__menu {
@@ -459,6 +485,7 @@ a:focus-visible {
 @media (any-pointer: fine) {
   .cursor {
     pointer-events: none;
+    letter-spacing: 1px;
     display: block;
     position: fixed;
     top: 0;

@@ -93,21 +93,15 @@ const navigate = (newPosition) => {
   const direction = getDirection(newPosition);
 
   const currentSlide = slidesArr[current];
-  current =
-    direction === "next"
-      ? current < totalSlides - 1
-        ? ++current
-        : 0
-      : current > 0
-      ? --current
-      : totalSlides - 1;
-  const nextSlide = slidesArr[current];
+  current = newPosition;
+
+  const nextSlide = slidesArr[newPosition];
 
   navigateAnimation({ currentSlide, direction, positions, nextSlide });
 };
 
 const showContent = (position) => {
-  if (isAnimating) return;
+  // if (isAnimating) return;
   isAnimating = true;
   isFullScreenOpen = true;
 
@@ -178,6 +172,12 @@ const init = () => {
   [...DOM.navigationItems].forEach((item, position) => {
     item.addEventListener("click", () => {
       if (current === position || isAnimating) return;
+
+      if (isFullScreenOpen && !isAnimating) {
+        toggleCursorAndBackTexts();
+        hideContent(slidesArr[current], true);
+      }
+
       navigate(position);
     });
   });

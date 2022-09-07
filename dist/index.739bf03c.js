@@ -624,8 +624,8 @@ const navigate = (newPosition)=>{
     DOM.navigationItems[newPosition].classList.add("frame__nav-button--current");
     const direction = getDirection(newPosition);
     const currentSlide = slidesArr[current];
-    current = direction === "next" ? current < totalSlides - 1 ? ++current : 0 : current > 0 ? --current : totalSlides - 1;
-    const nextSlide = slidesArr[current];
+    current = newPosition;
+    const nextSlide = slidesArr[newPosition];
     (0, _gsap1.navigateAnimation)({
         currentSlide,
         direction,
@@ -634,7 +634,7 @@ const navigate = (newPosition)=>{
     });
 };
 const showContent = (position)=>{
-    if (isAnimating) return;
+    // if (isAnimating) return;
     isAnimating = true;
     isFullScreenOpen = true;
     const slide = slidesArr[position];
@@ -685,6 +685,10 @@ const init = ()=>{
     ].forEach((item, position)=>{
         item.addEventListener("click", ()=>{
             if (current === position || isAnimating) return;
+            if (isFullScreenOpen && !isAnimating) {
+                (0, _gsap1.toggleCursorAndBackTexts)();
+                hideContent(slidesArr[current], true);
+            }
             navigate(position);
         });
     });
